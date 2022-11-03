@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package channelconnectorservice;
+
+import "google/protobuf/timestamp.proto";
+
+
+service ChannelConnectorService {
+    rpc CreateChannelConnector (ChannelConnectorRequest) returns (ChannelConnectorResponse);
+    rpc GetChannelConnector (GetChannelConnectorReq) returns (ChannelConnectorResponse);
+    rpc GetAllChannels (Empty) returns (GetAllChannelConnectorResponse);
+    rpc UpdateChannel (ChannelConnectorRequest) returns (ChannelConnectorResponse);
+}
+
+
+message ChannelConnectorRequest {
+    ChannelConnector channel_connector = 1;
+    optional int32 client_id = 2;
+    optional int32 account_id = 3;
+   
+}
+
+message ChannelConnectorResponse {
+    string message = 1;
+    ChannelConnector data = 2;
+}
+
+message ChannelConnector {
+    string user_name = 1;
+    string password = 2;
+    bool valid = 3;
+    string connector_call_date = 4;
+    bool connector_call = 5;
+    bool on_off = 6;
+    int32 admin_active = 7;
+    int32 seller_active = 8;
+    int32 auto = 9;
+    int32 marketplace_id = 10; 
+    int32 company_id = 11;
+    int32 client_id = 12;
+ 
+}
+
+message GetChannelConnectorReq {
+    int32 client_id = 1;
+}
+
+message Empty {}
+
+message GetAllChannelConnectorResponse {
+    repeated ChannelConnector data = 1;
+}
+
+
